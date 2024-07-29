@@ -2,7 +2,14 @@
 export default {
 	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
-		extend: {},
+		extend: {
+			container: {
+				padding: '2rem',
+				center: true,
+			},
+			transitionDuration: '0.6s',
+			transitionTimingFunction: 'ease-in-out',
+		},
 	},
 	plugins: [],
 };
