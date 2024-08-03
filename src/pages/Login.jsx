@@ -13,7 +13,7 @@ export function Component() {
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
-	console.log(errors);
+
 	async function onSubmit({ username, password }) {
 		try {
 			const data = await AuthService.login(username, password);
