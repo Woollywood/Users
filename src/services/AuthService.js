@@ -14,6 +14,12 @@ export class AuthService {
 		return data;
 	}
 
+	static async logout() {
+		localStorage.removeItem('token');
+		localStorage.removeItem('refreshToken');
+		return true;
+	}
+
 	static async getMe() {
 		const service = new HttpService();
 		const httpService = service.instance;
