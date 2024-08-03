@@ -3,8 +3,10 @@ import { RouterProvider } from 'react-router-dom';
 import { router } from './router/router';
 import { useAuthDispatch } from './contexts/AuthContext';
 import { AuthService } from './services/AuthService';
+import { useSnackbar } from 'notistack';
 
 export default function App() {
+	const { enqueueSnackbar } = useSnackbar();
 	const dispatch = useAuthDispatch();
 
 	useEffect(() => {
@@ -13,6 +15,11 @@ export default function App() {
 			AuthService.getMe()
 				.then(({ data: user }) => {
 					dispatch({ type: 'SET_USER', payload: user });
+				})
+				.catch((error) => {
+					localStorage.removeItem('token');
+					localStorage.removeItem('refreshToken');
+					enqueueSnackbar(error.message, { variant: 'error' });
 				})
 				.finally(() => {
 					dispatch({ type: 'SET_LOADING', payload: false });

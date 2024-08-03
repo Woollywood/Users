@@ -4,8 +4,10 @@ import Button from '@mui/material/Button';
 import { AuthService } from '../services/AuthService';
 import { useAuthDispatch } from '../contexts/AuthContext';
 import { useForm } from 'react-hook-form';
+import { useSnackbar } from 'notistack';
 
 export function Component() {
+	const { enqueueSnackbar } = useSnackbar();
 	const navigate = useNavigate();
 	const dispatch = useAuthDispatch();
 	const {
@@ -20,7 +22,7 @@ export function Component() {
 			dispatch({ type: 'SET_USER', payload: data });
 			navigate('/', { replace: true });
 		} catch (error) {
-			console.log(error);
+			enqueueSnackbar(error.message, { variant: 'error' });
 		}
 	}
 
