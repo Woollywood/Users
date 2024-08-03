@@ -12,7 +12,11 @@ export const routes = [
 				children: [
 					{
 						index: true,
-						lazy: () => import('../pages/index'),
+						lazy: () => import('../pages/onBoard'),
+					},
+					{
+						path: '/login',
+						lazy: () => import('../pages/Login'),
 					},
 				],
 			},
