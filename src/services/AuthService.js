@@ -10,6 +10,7 @@ export class AuthService {
 			{ headers: { 'Content-Type': 'application/json' } }
 		);
 		localStorage.setItem('token', data.token);
+		localStorage.setItem('refreshToken', data.refreshToken);
 		return data;
 	}
 

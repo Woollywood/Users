@@ -14,14 +14,16 @@ export function Component() {
 	console.log(user);
 
 	useEffect(() => {
-		dispatch({ type: 'SET_LOADING', payload: true });
-		AuthService.getMe()
-			.then(({ data: user }) => {
-				dispatch({ type: 'SET_USER', payload: user });
-			})
-			.finally(() => {
-				dispatch({ type: 'SET_LOADING', payload: false });
-			});
+		if (localStorage.getItem('token')) {
+			dispatch({ type: 'SET_LOADING', payload: true });
+			AuthService.getMe()
+				.then(({ data: user }) => {
+					dispatch({ type: 'SET_USER', payload: user });
+				})
+				.finally(() => {
+					dispatch({ type: 'SET_LOADING', payload: false });
+				});
+		}
 	}, []);
 
 	async function handleSubmit(e) {
