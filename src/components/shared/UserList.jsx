@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useSnackbar } from 'notistack';
 import { UsersService } from '../../services/UsersService';
 import Pagination from '@mui/material/Pagination';
-import TextField from '@mui/material/TextField';
 import User from './User';
 
 export default function UserList() {

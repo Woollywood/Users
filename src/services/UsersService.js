@@ -8,4 +8,13 @@ export class UsersService {
 			params,
 		});
 	}
+	static async searchUser(username) {
+		const service = new HttpService();
+		const httpService = service.instance;
+		return await httpService.get('users/search', {
+			params: {
+				q: username,
+			},
+		});
+	}
 }

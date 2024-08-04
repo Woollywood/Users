@@ -19,8 +19,16 @@ export const routes = [
 						lazy: () => import('../pages/login'),
 					},
 					{
+						path: '/profile',
+						lazy: () => import('../pages/profile'),
+					},
+					{
 						path: '/users',
 						lazy: () => import('../pages/users'),
+					},
+					{
+						path: '/users/:slug',
+						lazy: () => import('../pages/user'),
 					},
 				],
 			},

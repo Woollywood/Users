@@ -22,7 +22,20 @@ const pages = [
 		path: '/users',
 	},
 ];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = [
+	{
+		label: 'Profile',
+		path: '/profile',
+	},
+	{
+		label: 'Account',
+		path: '/account',
+	},
+	{
+		label: 'Dashboard',
+		path: '/dashboard',
+	},
+];
 
 export default function Header() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
@@ -41,19 +54,15 @@ export default function Header() {
 	const handleCloseNavMenu = () => {
 		setAnchorElNav(null);
 	};
-
-	const handleCloseUserMenu = async (setting) => {
-		switch (setting) {
-			case 'Logout': {
-				const result = await AuthService.logout();
-				if (result) {
-					dispatch({ type: 'RESET_USER' });
-				}
-			}
-		}
-
+	const handleCloseUserMenu = () => {
 		setAnchorElUser(null);
 	};
+
+	async function onLogoutHandler() {
+		if (await AuthService.logout()) {
+			dispatch({ type: 'RESET_USER' });
+		}
+	}
 
 	return (
 		<AppBar position='static'>
@@ -170,10 +179,15 @@ export default function Header() {
 										open={Boolean(anchorElUser)}
 										onClose={handleCloseUserMenu}>
 										{settings.map((setting) => (
-											<MenuItem key={setting} onClick={() => handleCloseUserMenu(setting)}>
-												<Typography textAlign='center'>{setting}</Typography>
+											<MenuItem key={setting.label} onClick={handleCloseUserMenu}>
+												<Typography textAlign='center'>
+													<Link to={setting.path}>{setting.label}</Link>
+												</Typography>
 											</MenuItem>
 										))}
+										<MenuItem onClick={onLogoutHandler}>
+											<Typography textAlign='center'>Logout</Typography>
+										</MenuItem>
 									</Menu>
 								</Box>
 							) : (

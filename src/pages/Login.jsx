@@ -18,7 +18,8 @@ export function Component() {
 
 	async function onSubmit({ username, password }) {
 		try {
-			const data = await AuthService.login(username, password);
+			await AuthService.login(username, password);
+			const { data } = await AuthService.getMe();
 			dispatch({ type: 'SET_USER', payload: data });
 			navigate('/', { replace: true });
 		} catch (error) {
@@ -37,8 +38,8 @@ export function Component() {
 						{...register('username', {
 							required: true,
 						})}
+						error={!!errors.username}
 					/>
-					{errors.username && <h2 className='text-red-700 text-sm font-medium self-start'>Required*</h2>}
 					<TextField
 						label='Password'
 						variant='standard'
@@ -46,8 +47,8 @@ export function Component() {
 						{...register('password', {
 							required: true,
 						})}
+						error={!!errors.password}
 					/>
-					{errors.password && <h2 className='text-red-700 text-sm font-medium self-start'>Required*</h2>}
 				</div>
 
 				<Button variant='contained' type='submit'>
