@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+
 function FieldWrapper({ title, children }) {
 	return (
 		<div className='flex flex-col'>
@@ -28,6 +31,11 @@ export default function Profile({ user }) {
 						{fullName} ({user.username})
 					</h2>
 					<p className='text-xl text-gray-400'>{user.email}</p>
+				</div>
+				<div className='flex justify-end flex-grow self-start'>
+					<Link to='/profile/edit'>
+						<Button variant='contained'>Edit</Button>
+					</Link>
 				</div>
 			</div>
 			<FieldWrapper title='Bio'>

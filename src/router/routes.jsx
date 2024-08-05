@@ -23,6 +23,10 @@ export const routes = [
 						lazy: () => import('../pages/profile'),
 					},
 					{
+						path: '/profile/edit',
+						lazy: () => import('../pages/profileEdit'),
+					},
+					{
 						path: '/users',
 						lazy: () => import('../pages/users'),
 					},
