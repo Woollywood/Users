@@ -27,7 +27,7 @@ export const routes = [
 						lazy: () => import('../pages/users'),
 					},
 					{
-						path: '/users/:slug',
+						path: '/users/:id',
 						lazy: () => import('../pages/user'),
 					},
 				],

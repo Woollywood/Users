@@ -8,6 +8,13 @@ export class UsersService {
 			params,
 		});
 	}
+
+	static async getSingleUser(id) {
+		const service = new HttpService();
+		const httpService = service.instance;
+		return await httpService.get(`/users/${id}`);
+	}
+
 	static async searchUser(username) {
 		const service = new HttpService();
 		const httpService = service.instance;
@@ -16,5 +23,17 @@ export class UsersService {
 				q: username,
 			},
 		});
+	}
+
+	static async getPosts(id) {
+		const service = new HttpService();
+		const httpService = service.instance;
+		return await httpService.get(`/users/${id}/posts`);
+	}
+
+	static async getTodos(id) {
+		const service = new HttpService();
+		const httpService = service.instance;
+		return await httpService.get(`/users/${id}/todos`);
 	}
 }

@@ -114,9 +114,9 @@ export default function Header() {
 							}}>
 							{pages.map((page) => (
 								<MenuItem key={page.path} onClick={handleCloseNavMenu}>
-									<Typography textAlign='center'>
-										<Link to={page.path}>{page.label}</Link>
-									</Typography>
+									<Link to={page.path}>
+										<Typography textAlign='center'>{page.label}</Typography>
+									</Link>
 								</MenuItem>
 							))}
 						</Menu>
@@ -139,12 +139,14 @@ export default function Header() {
 					</Typography>
 					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 						{pages.map((page) => (
-							<Button
-								key={page.path}
-								onClick={handleCloseNavMenu}
-								sx={{ my: 2, color: 'white', display: 'block' }}>
-								<Link to={page.path}>{page.label}</Link>
-							</Button>
+							<Link to={page.path} key={page.label}>
+								<Button
+									key={page.path}
+									onClick={handleCloseNavMenu}
+									sx={{ my: 2, color: 'white', display: 'block' }}>
+									{page.label}
+								</Button>
+							</Link>
 						))}
 					</Box>
 
@@ -179,11 +181,11 @@ export default function Header() {
 										open={Boolean(anchorElUser)}
 										onClose={handleCloseUserMenu}>
 										{settings.map((setting) => (
-											<MenuItem key={setting.label} onClick={handleCloseUserMenu}>
-												<Typography textAlign='center'>
-													<Link to={setting.path}>{setting.label}</Link>
-												</Typography>
-											</MenuItem>
+											<Link to={setting.path} key={setting.label}>
+												<MenuItem key={setting.label} onClick={handleCloseUserMenu}>
+													<Typography textAlign='center'>{setting.label}</Typography>
+												</MenuItem>
+											</Link>
 										))}
 										<MenuItem onClick={onLogoutHandler}>
 											<Typography textAlign='center'>Logout</Typography>
